@@ -5,8 +5,7 @@
 A little function that replaces word beginnings.
 
 ```
-cargo build --example zummi --release && cp target/release/examples/zummi $CARGO_PATH
+cargo install --git "https://github.com/hoodie/zummi/"
 zummi "hello world"
+# wello horld
 ```
-
-*bith wenchmarks*
