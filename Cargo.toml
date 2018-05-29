@@ -2,6 +2,8 @@
 name = "zummi"
 version = "0.1.0"
 authors = ["Hendrik Sollich <hendrik@hoodie.de>"]
+description = "fun lib that produces spoonerisms"
+license = "MIT OR Apache-2.0"
 
 [[bin]]
 test = false

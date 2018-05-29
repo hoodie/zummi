@@ -1,3 +1,8 @@
+#![cfg_attr(feature = "test", feature(test))]
+
+#[cfg(feature = "nightly")]
+#[cfg(test)] extern crate test;
+
 const VOWELS: &'static str = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
 const CONSONANTS: &'static str = "aeiouyAEIOUY";
 
@@ -18,7 +23,18 @@ fn stem2(word: &str) -> (&str, &str) {
 }
 
 
-pub fn zummi_naiv(phrase: &str) -> Option<String> {
+/// Splits a phase of two words and shuffles their beginnings.
+///
+/// Naive implementation
+///
+/// # Example
+///
+/// ```
+/// extern crate zummi;
+/// assert_eq!(zummi::zummi_naive("hello world"), Some(String::from("wello horld")));
+/// ```
+///
+pub fn zummi_naive(phrase: &str) -> Option<String> {
     let mut words = phrase.split_whitespace();
     let (first, second) = (words.next(), words.next());
     if let (Some(first), Some(second)) = (first, second) {
@@ -29,6 +45,15 @@ pub fn zummi_naiv(phrase: &str) -> Option<String> {
     None
 }
 
+/// Splits a phase of two words and shuffles their beginnings.
+///
+/// # Example
+///
+/// ```
+/// extern crate zummi;
+/// assert_eq!(zummi::zummi("hello world"), Some(String::from("wello horld")));
+/// ```
+///
 pub fn zummi(phrase: &str) -> Option<String> {
     let mut words = phrase.split_whitespace();
     let (first, second) = (words.next(), words.next());
@@ -43,9 +68,8 @@ pub fn zummi(phrase: &str) -> Option<String> {
     None
 }
 
-//#![feature(test)]
-//extern crate test;
 #[cfg(test)]
+#[cfg(feature = "nightly")]
 mod tests {
     use super::*;
     use test::black_box;
