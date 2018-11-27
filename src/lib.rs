@@ -1,18 +1,15 @@
 #![cfg_attr(feature = "test", feature(test))]
 
 #[cfg(feature = "nightly")]
-#[cfg(test)] extern crate test;
+#[cfg(test)]
+extern crate test;
 
-const VOWELS: &'static str = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
-const CONSONANTS: &'static str = "aeiouyAEIOUY";
+const VOWELS: &str = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
+const CONSONANTS: &str = "aeiouyAEIOUY";
 
 fn stem(word: &str) -> (String, String) {
-    let start = word.chars()
-        .take_while(|c| VOWELS.contains(*c))
-        .collect::<String>();
-    let end = word.chars()
-        .skip(start.len())
-        .collect::<String>();
+    let start = word.chars().take_while(|c| VOWELS.contains(*c)).collect::<String>();
+    let end = word.chars().skip(start.len()).collect::<String>();
     (start, end)
 }
 
@@ -21,7 +18,6 @@ fn stem2(word: &str) -> (&str, &str) {
     let index = word.find(pattern).unwrap_or(0);
     (&word[0..index], &word[index..])
 }
-
 
 /// Splits a phase of two words and shuffles their beginnings.
 ///
@@ -40,9 +36,10 @@ pub fn zummi_naive(phrase: &str) -> Option<String> {
     if let (Some(first), Some(second)) = (first, second) {
         let (f, irst) = stem(first);
         let (s, econd) = stem(second);
-        return Some(s + &irst + " " + &f + &econd);
+        Some(s + &irst + " " + &f + &econd)
+    } else {
+        None
     }
-    None
 }
 
 /// Splits a phase of two words and shuffles their beginnings.
@@ -60,12 +57,12 @@ pub fn zummi(phrase: &str) -> Option<String> {
     if let (Some(first), Some(second)) = (first, second) {
         let (f, irst) = stem2(first);
         let (s, econd) = stem2(second);
-        return Some(
-            String::with_capacity(f.len() + irst.len() + s.len() + econd.len()) +
-            &s + &irst + " " + &f + &econd
-            );
+        let capacity = f.len() + irst.len() + s.len() + econd.len();
+        let spoonerism = String::with_capacity(capacity) + s + irst + " " + f + econd;
+        Some(spoonerism)
+    } else {
+        None
     }
-    None
 }
 
 #[cfg(test)]
