@@ -1,17 +1,17 @@
-const VOWELS: &str = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
-const CONSONANTS: &str = "aeiouyAEIOUY";
+const CONSONANTS: &str = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
+const VOWELS: &str = "aeiouyAEIOUY";
 
 fn stem(word: &str) -> (String, String) {
     let start = word
         .chars()
-        .take_while(|c| VOWELS.contains(*c))
+        .take_while(|c| CONSONANTS.contains(*c))
         .collect::<String>();
     let end = word.chars().skip(start.len()).collect::<String>();
     (start, end)
 }
 
 fn stem2(word: &str) -> (&str, &str) {
-    let pattern = |c: char| CONSONANTS.contains(c);
+    let pattern = |c: char| VOWELS.contains(c);
     let index = word.find(pattern).unwrap_or(0);
     (&word[0..index], &word[index..])
 }
@@ -81,3 +81,4 @@ pub fn zummi(phrase: &str) -> Option<String> {
         None
     }
 }
+
