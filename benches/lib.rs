@@ -4,7 +4,6 @@ extern crate test;
 use test::Bencher;
 use test::black_box;
 
-extern crate zummi;
 use zummi::{zummi, zummi_broke, zummi_naive};
 
 #[bench]

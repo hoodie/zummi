@@ -23,7 +23,6 @@ fn stem2(word: &str) -> (&str, &str) {
 /// # Example
 ///
 /// ```
-/// extern crate zummi;
 /// assert_eq!(zummi::zummi_naive("hello world"), Some(String::from("wello horld")));
 /// ```
 ///
@@ -44,7 +43,6 @@ pub fn zummi_naive(phrase: &str) -> Option<String> {
 /// # Example
 ///
 /// ```
-/// extern crate zummi;
 /// assert_eq!(zummi::zummi_broke("hello world"), Some(String::from("wello horld")));
 /// ```
 ///
@@ -67,7 +65,6 @@ pub fn zummi_broke(phrase: &str) -> Option<String> {
 /// # Example
 ///
 /// ```
-/// extern crate zummi;
 /// assert_eq!(zummi::zummi("hello world"), Some(String::from("wello horld")));
 /// ```
 ///
