@@ -9,3 +9,6 @@ license = "MIT OR Apache-2.0"
 test = false
 doc = false
 name = "zummi"
+
+[features]
+"nightly" = []
