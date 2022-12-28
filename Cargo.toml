@@ -1,10 +1,12 @@
 [package]
 name = "zummi"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Hendrik Sollich <hendrik@hoodie.de>"]
 description = "fun lib that produces spoonerisms"
 license = "MIT OR Apache-2.0"
 edition = "2018"
+repository = "https://github.com/hoodie/zummi"
+documentation = "https://docs.rs/zummi/"
 
 [[bin]]
 test = false
